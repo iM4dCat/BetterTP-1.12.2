@@ -3,7 +3,7 @@
     "modid": "bettertp",
     "name": "BetterTp",
     "description": "better tp",
-    "version": "1.0",
+    "version": "${version}",
     "mcversion": "1.12.2",
     "authorList": [
       "Luminous"

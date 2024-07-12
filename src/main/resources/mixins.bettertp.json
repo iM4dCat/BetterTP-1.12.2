@@ -5,6 +5,11 @@
   "refmap": "mixins.bettertp.refmap.json",
   "minVersion": "0.7.11",
   "client": [
-    "MixinCommandTP"
+    "MixinCommandTP",
+    "MixinServerCommandManager"
+  ],
+  "server": [
+    "MixinCommandTP",
+    "MixinServerCommandManager"
   ]
 }

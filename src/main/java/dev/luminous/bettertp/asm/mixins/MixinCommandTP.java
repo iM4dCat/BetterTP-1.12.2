@@ -110,38 +110,26 @@ public abstract class MixinCommandTP extends CommandBase  {
         float lvt_7_1_;
         if (p_189863_0_ instanceof EntityPlayerMP) {
             Set<SPacketPlayerPosLook.EnumFlags> lvt_6_1_ = EnumSet.noneOf(SPacketPlayerPosLook.EnumFlags.class);
-            if (p_189863_1_.isRelative()) {
-                lvt_6_1_.add(SPacketPlayerPosLook.EnumFlags.X);
-            }
-
-            if (p_189863_2_.isRelative()) {
-                lvt_6_1_.add(SPacketPlayerPosLook.EnumFlags.Y);
-            }
-
-            if (p_189863_3_.isRelative()) {
-                lvt_6_1_.add(SPacketPlayerPosLook.EnumFlags.Z);
-            }
-
-            if (p_189863_5_.isRelative()) {
-                lvt_6_1_.add(SPacketPlayerPosLook.EnumFlags.X_ROT);
-            }
-
-            if (p_189863_4_.isRelative()) {
-                lvt_6_1_.add(SPacketPlayerPosLook.EnumFlags.Y_ROT);
-            }
 
             lvt_7_1_ = (float)p_189863_4_.getAmount();
-            if (!p_189863_4_.isRelative()) {
-                lvt_7_1_ = MathHelper.wrapDegrees(lvt_7_1_);
+            if (p_189863_4_.isRelative()) {
+                lvt_7_1_ += p_189863_0_.rotationYaw;
             }
+            lvt_7_1_ = MathHelper.wrapDegrees(lvt_7_1_);
 
             float lvt_8_1_ = (float)p_189863_5_.getAmount();
-            if (!p_189863_5_.isRelative()) {
-                lvt_8_1_ = MathHelper.wrapDegrees(lvt_8_1_);
+            if (p_189863_5_.isRelative()) {
+                lvt_8_1_ += p_189863_0_.rotationPitch;
             }
+            lvt_8_1_ = MathHelper.wrapDegrees(lvt_8_1_);
 
             p_189863_0_.dismountRidingEntity();
-            ((EntityPlayerMP)p_189863_0_).connection.setPlayerLocation(p_189863_1_.getAmount(), p_189863_2_.getAmount(), p_189863_3_.getAmount(), lvt_7_1_, lvt_8_1_, lvt_6_1_);
+            ((EntityPlayerMP)p_189863_0_).connection.setPlayerLocation(p_189863_1_.getAmount() + (p_189863_1_.isRelative() ? p_189863_0_.posX : 0),
+                    p_189863_2_.getAmount() + (p_189863_2_.isRelative() ? p_189863_0_.posY : 0),
+                    p_189863_3_.getAmount() + (p_189863_3_.isRelative() ? p_189863_0_.posZ : 0),
+                    lvt_7_1_,
+                    lvt_8_1_,
+                    lvt_6_1_);
             p_189863_0_.setRotationYawHead(lvt_7_1_);
         } else {
             float lvt_6_2_ = (float)MathHelper.wrapDegrees(p_189863_4_.getResult());
@@ -155,6 +143,5 @@ public abstract class MixinCommandTP extends CommandBase  {
             p_189863_0_.motionY = 0.0;
             p_189863_0_.onGround = true;
         }
-
     }
 }
