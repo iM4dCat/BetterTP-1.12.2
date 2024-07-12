@@ -1,9 +1,6 @@
 package dev.luminous.bettertp.asm.mixins;
 
-import dev.luminous.bettertp.commands.CommandAddVelocity;
-import dev.luminous.bettertp.commands.CommandLookAt;
-import dev.luminous.bettertp.commands.CommandRotationShake;
-import dev.luminous.bettertp.commands.CommandForwardVelocity;
+import dev.luminous.bettertp.commands.*;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.command.ICommandListener;
 import net.minecraft.command.ServerCommandManager;
@@ -21,5 +18,8 @@ public abstract class MixinServerCommandManager extends CommandHandler implement
         registerCommand(new CommandLookAt());
         registerCommand(new CommandForwardVelocity());
         registerCommand(new CommandAddVelocity());
+        registerCommand(new CommandSetVelocity());
+        registerCommand(new CommandRandomTp());
+        registerCommand(new CommandSetForwardVelocity());
     }
 }

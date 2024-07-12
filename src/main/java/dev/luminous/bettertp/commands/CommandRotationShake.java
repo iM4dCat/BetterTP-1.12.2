@@ -30,7 +30,7 @@ public class CommandRotationShake extends CommandBase {
     }
 
     public String getUsage(ICommandSender p_71518_1_) {
-        return "/rotationshake <entity> <pitch> <yaw>";
+        return "/rotationshake <entity> <yaw> <pitch>";
     }
 
     public List<String> getTabCompletions(MinecraftServer p_184883_1_, ICommandSender p_184883_2_, String[] p_184883_3_, @Nullable BlockPos p_184883_4_) {
@@ -49,8 +49,8 @@ public class CommandRotationShake extends CommandBase {
             lvt_5_2_ = getEntity(p_184881_1_, p_184881_2_, p_184881_3_[0]);
             if (lvt_5_2_.world != null) {
                 int lvt_6_2_ = 1;
-                double shakePitch = parseDouble(p_184881_3_[lvt_6_2_++]);
                 double shakeYaw = parseDouble(p_184881_3_[lvt_6_2_++]);
+                double shakePitch = parseDouble(p_184881_3_[lvt_6_2_++]);
 
                 addEntityRotation(lvt_5_2_, shakePitch * rd.nextDouble() * (rd.nextBoolean() ? -1 : 1), shakeYaw * rd.nextDouble()* (rd.nextBoolean() ? -1 : 1));
                 notifyCommandListener(p_184881_2_, this, "successful", lvt_5_2_.getName());
