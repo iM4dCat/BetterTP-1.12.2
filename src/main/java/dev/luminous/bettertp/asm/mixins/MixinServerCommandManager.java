@@ -1,5 +1,6 @@
 package dev.luminous.bettertp.asm.mixins;
 
+import dev.luminous.bettertp.commands.CommandAddVelocity;
 import dev.luminous.bettertp.commands.CommandLookAt;
 import dev.luminous.bettertp.commands.CommandRotationShake;
 import dev.luminous.bettertp.commands.CommandForwardVelocity;
@@ -19,5 +20,6 @@ public abstract class MixinServerCommandManager extends CommandHandler implement
         registerCommand(new CommandRotationShake());
         registerCommand(new CommandLookAt());
         registerCommand(new CommandForwardVelocity());
+        registerCommand(new CommandAddVelocity());
     }
 }

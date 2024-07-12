@@ -82,10 +82,10 @@ public class CommandLookAt extends CommandBase {
                     lvt_6_1_);
             p_189863_0_.setRotationYawHead(lvt_7_1_);
         } else {
-            float lvt_6_2_ = (float) MathHelper.wrapDegrees(pitch);
-            lvt_7_1_ = (float) MathHelper.wrapDegrees(yaw);
+            float lvt_6_2_ = (float) MathHelper.wrapDegrees(yaw);
+            lvt_7_1_ = (float) MathHelper.wrapDegrees(pitch);
             lvt_7_1_ = MathHelper.clamp(lvt_7_1_, -90.0F, 90.0F);
-            p_189863_0_.setLocationAndAngles(p_189863_0_.posX, p_189863_0_.posY, p_189863_0_.posZ, lvt_7_1_, lvt_6_2_);
+            p_189863_0_.setLocationAndAngles(p_189863_0_.posX, p_189863_0_.posY, p_189863_0_.posZ, lvt_6_2_, lvt_7_1_);
             p_189863_0_.setRotationYawHead((float) yaw);
         }
 
