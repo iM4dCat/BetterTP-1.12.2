@@ -58,6 +58,7 @@ public class CommandLookAt extends CommandBase {
                 }
                 float[] rotations = getRotations(chooseEntity, target);
                 setEntityRotation(chooseEntity, rotations[1], rotations[0]);
+                notifyCommandListener(p_184881_2_, this, "successful", chooseEntity.getName());
             }
         }
     }
