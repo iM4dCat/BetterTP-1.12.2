@@ -1,5 +1,6 @@
 package dev.luminous.bettertp.asm.mixins;
 
+import dev.luminous.bettertp.commands.CommandLookAt;
 import dev.luminous.bettertp.commands.CommandRotationShake;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.command.ICommandListener;
@@ -15,5 +16,6 @@ public abstract class MixinServerCommandManager extends CommandHandler implement
     @Inject(method = "<init>", at = @At("RETURN"))
     public void onInit(MinecraftServer p_i46985_1_, CallbackInfo ci) {
         registerCommand(new CommandRotationShake());
+        registerCommand(new CommandLookAt());
     }
 }
