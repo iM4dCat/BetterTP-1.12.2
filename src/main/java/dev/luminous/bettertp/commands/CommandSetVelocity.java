@@ -48,10 +48,25 @@ public class CommandSetVelocity extends CommandBase {
                 String x = p_184881_3_[lvt_6_2_++];
                 String y = p_184881_3_[lvt_6_2_++];
                 String z = p_184881_3_[lvt_6_2_++];
+                boolean xRelative = false;
+                boolean yRelative = false;
+                boolean zRelative = false;
+                if (x.startsWith("~")) {
+                    xRelative = true;
+                    x = x.replaceFirst("~", "");
+                }
+                if (y.startsWith("~")) {
+                    yRelative = true;
+                    y = y.replaceFirst("~", "");
+                }
+                if (z.startsWith("~")) {
+                    zRelative = true;
+                    z = z.replaceFirst("~", "");
+                }
                 double forwardX = parseDouble(x);
                 double forwardY = parseDouble(y);
                 double forwardZ = parseDouble(z);
-                chooseEntity.setVelocity(forwardX, forwardY, forwardZ);
+                chooseEntity.setVelocity((xRelative ? chooseEntity.motionX : 0) + forwardX, (yRelative ? chooseEntity.motionY : 0) +  forwardY, (zRelative ? chooseEntity.motionZ : 0) + forwardZ);
                 if (chooseEntity instanceof EntityPlayerMP) {
                     EntityPlayerMP player = ((EntityPlayerMP) chooseEntity);
                     player.connection.sendPacket(new SPacketEntityVelocity(player));

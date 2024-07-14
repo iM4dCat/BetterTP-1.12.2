@@ -16,10 +16,11 @@ public abstract class MixinServerCommandManager extends CommandHandler implement
     public void onInit(MinecraftServer p_i46985_1_, CallbackInfo ci) {
         registerCommand(new CommandRotationShake());
         registerCommand(new CommandLookAt());
-        registerCommand(new CommandForwardVelocity());
-        registerCommand(new CommandAddVelocity());
         registerCommand(new CommandSetVelocity());
         registerCommand(new CommandRandomTp());
         registerCommand(new CommandSetForwardVelocity());
+        registerCommand(new CommandResetFallDistance());
+        registerCommand(new CommandFire());
+        registerCommand(new CommandDamage());
     }
 }
