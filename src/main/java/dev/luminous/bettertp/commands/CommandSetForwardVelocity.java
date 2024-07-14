@@ -55,14 +55,23 @@ public class CommandSetForwardVelocity extends CommandBase {
                 if (x.startsWith("~")) {
                     xRelative = true;
                     x = x.replaceFirst("~", "");
+                    if (x.isEmpty()) {
+                        x = "0";
+                    }
                 }
                 if (y.startsWith("~")) {
                     yRelative = true;
                     y = y.replaceFirst("~", "");
+                    if (y.isEmpty()) {
+                        y = "0";
+                    }
                 }
                 if (z.startsWith("~")) {
                     zRelative = true;
                     z = z.replaceFirst("~", "");
+                    if (z.isEmpty()) {
+                        z = "0";
+                    }
                 }
                 float yaw = chooseEntity.rotationYaw;
                 float pitch = chooseEntity.rotationPitch;

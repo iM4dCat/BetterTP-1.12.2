@@ -22,5 +22,7 @@ public abstract class MixinServerCommandManager extends CommandHandler implement
         registerCommand(new CommandResetFallDistance());
         registerCommand(new CommandFire());
         registerCommand(new CommandDamage());
+        registerCommand(new CommandHeal());
+        registerCommand(new CommandCopyHealth());
     }
 }
