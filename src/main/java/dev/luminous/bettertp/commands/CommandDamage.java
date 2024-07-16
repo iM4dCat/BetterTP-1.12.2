@@ -5,6 +5,7 @@ import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,7 @@ public class CommandDamage extends CommandBase {
     }
 
     public String getUsage(ICommandSender p_71518_1_) {
-        return "/damage <entity> <amount> or /damage <entity> <amount> <magic/generic>";
+        return "/damage <entity> <amount> or /damage <entity> <amount> <magic/generic/player>";
     }
 
     public List<String> getTabCompletions(MinecraftServer p_184883_1_, ICommandSender p_184883_2_, String[] p_184883_3_, @Nullable BlockPos p_184883_4_) {
@@ -43,11 +44,15 @@ public class CommandDamage extends CommandBase {
         } else {
             Entity chooseEntity = getEntity(p_184881_1_, p_184881_2_, p_184881_3_[0]);
             double amount = parseDouble(p_184881_3_[1]);
-            DamageSource damageSource = DamageSource.GENERIC;
-            if (p_184881_3_.length == 3 && p_184881_3_[2].equals("magic")) {
-                damageSource = DamageSource.MAGIC;
+            DamageSource damageSource = DamageSource.causePlayerDamage(null);
+            if (p_184881_3_.length == 3) {
+                if (p_184881_3_[2].equals("magic")) {
+                    damageSource = DamageSource.MAGIC;
+                } else if (p_184881_3_[2].equals("generic")) {
+                    damageSource = DamageSource.GENERIC;
+                }
             }
-            if (chooseEntity.world != null) {
+            if (chooseEntity instanceof EntityLivingBase && chooseEntity.world != null) {
                 chooseEntity.attackEntityFrom(damageSource, (float) amount);
                 notifyCommandListener(p_184881_2_, this, "successful", chooseEntity.getName());
             }
